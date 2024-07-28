@@ -1,37 +1,62 @@
-Test Case Design
+# Test Case Design
 
+## Caso 1
+**Case ID:** ET_DB_Trends_02  
+**Descripción:** Comprobar que los valores de la tendencia de los últimos 30 días son correctos aunque haya menos de 30 días de datos (ej. Usuario que lleva usando la aplicación 15 días).  
+**Pre-condición:** El usuario existe y no tiene <30 días de datos.
 
-TODO Detallar uno de estos ejemplos
+**Test Steps:** 
+1. Crear usuario y mockear datos de huella de carbono por N días (1 < N < 30).
+2. Consultar a la API por el endpoint de la tendencia para el usuario creado.
 
-Detalle de ejemplos a testear:
+**Expected Results:** La tendencia funciona con la muestra de datos menor o muestra un mensaje indicando que aún faltan datos.  
+**Post-condición:** Ninguna.
 
-Carbon Footprint Summary
-1. Consultar por los datos de un usuario para distintas fechas (tenga datos o no)
-2. Obtener detalle de Huella de carbono para cada una de dichas fechas
+## Caso 2
+**Case ID:** ET_DB_TrendsFilter_02  
+**Descripción:** Comprobar que los valores de la tendencia filtrada por un campo (ej. Transporte) de los últimos 30 días son correctos aunque solo haya datos para 1 día.  
+**Pre-condición:** El usuario existe y solo tiene un día de datos.
 
-Trends Graph
-1. Obtener gráfico/valores de cada día 
-2. Varios test con distintas permutaciones de filtros
+**Test Steps:** 
+1. Crear usuario y mockear datos de huella de carbono por 1 día.
+2. Consultar a la API por el endpoint de la tendencia para el usuario creado.
 
-Comparison Char
-1. Obtener el valor de la grafica del promediio en distintas regiones
-2. Comprobar que Los datos del Usuario coinciden con los del 1.1 
+**Expected Results:** Tendencia N/A o vacía.  
+**Post-condición:** Ninguna.
 
+## Caso 3
+**Case ID:** ET_DB_ComparisonChart_01  
+**Descripción:** Comprobar que el gráfico comparativo muestra los datos correctos para la región del usuario.  
+**Pre-condición:** El usuario existe y hay datos para el promedio del país.
 
-Tips and Recommendations
-1. Comprobar  que los consejos son acordes a la actividad: 
-   1. Ej: Si el usuario tiene grandes valores de gasto energético, que le recomiende cosas como desconectar los enchufes o que se compre una placa solar.
-   2. Si Tiene un gasto grande de Transporte y energía, pues que no pida comida a domicilio de manera habitual.
-   3. HAcer permutaciones con distintos casos y ver los resultados
+**Test Steps:** 
+1. Precalcular los datos promedio de una Región X.
+2. Crear un usuario con datos para la región X.
+3. Llamar a la API de la gráfica promedio de usuarios de una región.
 
-2. Los artículos deben ser testeados y acordes al test anterior, aunque su criterio puede ser más laxo
+**Expected Results:** Los datos del promedio de la región X coinciden con los datos precalculados (ver que no se usan los de otra región o que el promedio no varía en exceso < 0.05% del precalculado).  
+**Post-condición:** Ninguna.
 
-Archievements and badges
+## Caso 4
+**Case ID:** ET_DB_Tips_01  
+**Descripción:** Comprobar la pertinencia de los consejos en base a los datos del usuario.  
+**Pre-condición:** Crear un usuario con un gran consumo de electricidad. (Asumir que los consejos están etiquetados. Ej: `{tip: 'No olvides apagar las regletas y bajar los plomos antes de irte de vacaciones', tags: ['electricity', 'holidays']}`).
 
-1. Obtener los umblaes o características bajo los que se consiguen dichos logros y comprobar si se han alcanzado los umbrales y obtenido el logro. 
-2. Calcular la diferencia entre el umbral del usuario y el umbral para el siguiente objetivo y comprobar si coincide con el % o diferencia esperada. 
+**Test Steps:** 
+1. Crear usuario con un gran consumo eléctrico.
+2. Llamar a la API de consejos personalizados.
+3. Analizar los consejos personalizados o ver las posibles etiquetas de los consejos.
 
-Combinación de tests
+**Expected Results:** Los consejos están relacionados con reducir o prevenir el consumo eléctrico. Todos los consejos tienen como mínimo una etiqueta de 'electricity'.  
+**Post-condición:** Ninguna.
 
-Perfiles a Testear
-Añadiir tabla con permutaciones de Gasto en categorías Alto, medio y bajo en distintos países y  
+## Caso 5
+**Case ID:** ET_DB_BadgeProgress_01  
+**Descripción:** Calcular la diferencia entre el umbral del usuario y el umbral para el siguiente objetivo y comprobar si coincide con la diferencia esperada.  
+**Pre-condición:** Crear un usuario con cierto progreso en una insignia. La insignia puede ser: Días sin producir emisiones de carbono. El usuario ya cuenta con 13 días sin haber generado emisiones de carbono. El progreso de la insignia se subdivide en hitos de [1, 7, 15, 30] días.
+
+**Test Steps:** 
+1. Consultar a la API del progreso de insignias.
+
+**Expected Results:** Ver que se han alcanzado los primeros 2 hitos y que aún faltan (15 - 13) 2 días más para llegar al tercer hito.  
+**Post-condición:** Ninguna.
