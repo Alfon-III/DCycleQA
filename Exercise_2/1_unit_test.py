@@ -2,10 +2,7 @@
 from CarbonFootprintCalculator import CarbonFootprintCalculator
 import pytest
 
-# python3 -m pytest -v ./Exercise\ 2/1_unit_test.py
-
-
-# Excel to test the results
+# Excel to test the results (Hoja 1)
 # https://docs.google.com/spreadsheets/d/1uDtg-gmnTwtIeVu7pdKuRatCRWwqIjlosS34Xr1C99U/edit?usp=sharing
 #Run tests:
 # pytest .\Exercise_2\1_unit_test.py
