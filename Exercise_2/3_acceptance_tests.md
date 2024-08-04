@@ -2,6 +2,7 @@
 
 
 1. Unirse a un desafío
+   
 El usuario podrá inscribirse en un desafío activo. Mientras el desafío esté activo podrá participar en él sumando puntos en el desafío. 
 
 ```python
@@ -104,6 +105,7 @@ if post_points - prev_points != points:
 ```
 
 4. Comparar puntuación de un usaurio con el de la región
+
 El usuario podrá ver cántos puntos ha generado y compararse con el de la media de su región. 
  
 ```python
@@ -144,6 +146,7 @@ return True
 ```
 
 5. Desapuntarse de un desafío
+
 Un usuario puede abandonar un desafío si lo desea. Los puntos y su progreso se perderán. 
 
 ```python
