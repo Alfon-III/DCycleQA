@@ -7,7 +7,7 @@ import pytest
 #Run tests:
 # pytest .\Exercise_2\1_unit_test.py
 
-
+# Tests con números enteros positivos  con valores normales
 def test_calculation():
 
     assert CarbonFootprintCalculator(
@@ -30,6 +30,7 @@ def test_calculation():
         waste=10
     ).total_carbon_footprint() == 20.55
 
+# Test con valores altos fuera de lo habitual
 def test_large_values():
     
     assert CarbonFootprintCalculator(
@@ -39,7 +40,7 @@ def test_large_values():
     ).total_carbon_footprint() == 49300000000000000000
 
 
-
+# Test con valores negativos, y con resultado negativo
 def test_negatives():
 
     assert CarbonFootprintCalculator(
@@ -55,6 +56,8 @@ def test_negatives():
         waste=40
     ).total_carbon_footprint() == pytest.approx(-31.8, rel=1e-9)
 
+# Test que va a fallar por la falta de valores. 
+# La clase tendría que alzar algún error o inicializar a 0. 
 def test_empty_values():
     
     with pytest.raises(TypeError):
@@ -76,7 +79,7 @@ def test_empty_values():
     ).total_carbon_footprint() == 0
     
 
-
+# Formato del dato erróneo, levantará TypeError. 
 def test_invalid_types():
     with pytest.raises(TypeError):
         assert CarbonFootprintCalculator(
