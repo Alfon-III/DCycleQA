@@ -11,7 +11,7 @@ import pytest
 # pytest .\Exercise_2\2_integration_test.py
 
 
-
+# Test del funcionaminto base de la calculadora de huella de carbono
 def test_get_user_carbon_footprint():
     user_data = {
         'energy_consumption': 100,
@@ -29,7 +29,7 @@ def test_get_user_carbon_footprint():
 
     assert result == pytest.approx(expected_output, rel=1e-9)
     
-
+# Test de integración de get_user_carbon_footprint con get_comparison_with_average
 def test_comparison_with_avg_fp():
     
     user_data = {
@@ -56,7 +56,7 @@ def test_comparison_with_avg_fp():
 
     assert expected_res == get_comparison_with_average(user_footprint, average_footprint)
 
-
+# Test de integración de get_user_carbon_footprint con get_comparison_with_average con otros datos
 def test_comparison_with_avg_fp_2():
     
     user_data = {
@@ -85,6 +85,8 @@ def test_comparison_with_avg_fp_2():
 
     assert result == pytest.approx(expected_res, rel=1e-9)
 
+
+# Test de datos con decimales
 def test_comparison_with_avg_fp_decimals():
     
     user_data = {
@@ -112,7 +114,7 @@ def test_comparison_with_avg_fp_decimals():
     assert expected_res == get_comparison_with_average(user_footprint, average_footprint)
 
 
-
+# DAtos iguales para el usuario y la media regional
 def test_comparison_with_avg_fp_case_equal():
     user_data = {
         'energy_consumption': 100,
