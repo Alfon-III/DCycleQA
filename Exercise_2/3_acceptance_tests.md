@@ -1,3 +1,8 @@
+
+## Acceptance Test
+
+A continuación se detallan los tres métodos/endpoints que pueden ser llamados por el usuario y cómo deben ser llamados por la API para funcionar como se espera. 
+
 1. Calcular la huella de carbono del usuario
 
 |   |   |
@@ -6,7 +11,7 @@
 | Enpoint | /calculate-carbon-footprint |
 | Inputs | energy_consumption: `float`<br>transportation: `float`<br>waste: `float` |
 | Output | `float` |
-| Comentarios | Se deben rellenar todos los inputs en el formato indicado. Si no se completa un campo no funcionará la llamada. |
+| Comentarios | Se deben rellenar todos los parámetros en el formato indicado. Si no se completa un campo no funcionará la llamada. |
 
 2. Obtener huella de carbono
 
