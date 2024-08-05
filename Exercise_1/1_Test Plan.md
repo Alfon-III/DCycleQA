@@ -12,7 +12,8 @@ Los objetivos del plan serán comprobar el correcto funcionamiento de funcionali
 - Pruebas en distintos dispositivos (telefono/tablet/ordenador) de distintas resoluciones y prestaciones.
 
 ## Test Approach
-- **Unit Test:** Comprobar las funcionalidades de cada uno de los componentes.
+- **Unit Test:** Comprobar las funcionalidades de cada uno de los componentes de manera individual.
+- **Integration Test:** Probar el funcionamiento conjunto de los unit test y sus interacciones
 - **API Testing:** Probar los distintos endpoints llamados desde el frontend para asegurar que no permiten acceder a datos de otros usuarios.
 
 ## Test Environment
@@ -25,7 +26,8 @@ Los objetivos del plan serán comprobar el correcto funcionamiento de funcionali
 2. Planteamiento de este documento.
 3. Desarrollo de los tests:
    1. Unit Test
-   2. API Test
+   2. Integration Test
+   3. API Test
 4. Ejecución de los tests y notificación de posibles errores.
 5. Ejecución en entorno de preproducción.
 
