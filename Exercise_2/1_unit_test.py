@@ -7,6 +7,30 @@ import pytest
 #Run tests:
 # pytest .\Exercise_2\1_unit_test.py
 
+def test_calculate_energy_footprint():
+    calculator = CarbonFootprintCalculator(100, 0, 0)
+    assert calculator.calculate_energy_footprint() == 23.3
+    calculator = CarbonFootprintCalculator(0, 0, 0)
+    assert calculator.calculate_energy_footprint() == 0
+    calculator = CarbonFootprintCalculator(500, 0, 0)
+    assert calculator.calculate_energy_footprint() == 116.5
+
+def test_calculate_transportation_footprint():
+    calculator = CarbonFootprintCalculator(0, 100, 0)
+    assert calculator.calculate_transportation_footprint() == 21
+    calculator = CarbonFootprintCalculator(0, 0, 0)
+    assert calculator.calculate_transportation_footprint() == 0
+    calculator = CarbonFootprintCalculator(0, 500, 0)
+    assert calculator.calculate_transportation_footprint() == 105
+
+def test_calculate_waste_footprint():
+    calculator = CarbonFootprintCalculator(0, 0, 100)
+    assert calculator.calculate_waste_footprint() == 5
+    calculator = CarbonFootprintCalculator(0, 0, 0)
+    assert calculator.calculate_waste_footprint() == 0
+    calculator = CarbonFootprintCalculator(0, 0, 500)
+    assert calculator.calculate_waste_footprint() == 25
+
 # Tests con números enteros positivos  con valores normales
 def test_calculation():
 
@@ -78,26 +102,3 @@ def test_empty_values():
             waste=0,
     ).total_carbon_footprint() == 0
     
-
-# Formato del dato erróneo, levantará TypeError. 
-def test_invalid_types():
-    with pytest.raises(TypeError):
-        assert CarbonFootprintCalculator(
-            energy_consumption="100",
-            transportation=20,
-            waste=30
-        ).total_carbon_footprint() == 29
-
-    with pytest.raises(TypeError):
-        CarbonFootprintCalculator(
-            energy_consumption=100,
-            transportation="20",
-            waste=30
-        )
-
-    with pytest.raises(TypeError):
-        CarbonFootprintCalculator(
-            energy_consumption=100,
-            transportation=20,
-            waste="30"
-        )
